@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import SimpleLineChart from './charts/SimpleLineChart';
+import SplineWithPlotBands from './charts/SplineWithPlotBands';
+import LiveUpdate from './charts/LiveUpdate';
+
+// https://whawker.github.io/react-jsx-highcharts/examples/index.html
 
 class App extends Component {
   render() {
@@ -8,11 +13,10 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
         </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <SimpleLineChart />
+        <SplineWithPlotBands />
+        <LiveUpdate />
       </div>
     );
   }
