@@ -2,6 +2,8 @@ import express from 'express';
 import path from 'path';
 import http from 'http';
 import bodyParser from 'body-parser';
+import socketio from 'socket.io';
+
 import { serverConfig } from './config/config';
 import { generateRandomUsers } from './utils/bot';
 
@@ -24,4 +26,20 @@ app.set('port', port);
 const server = http.createServer(app);
 server.listen(port, () => global.console.log(`Server is up and running on localhost:${port}`));
 
-generateRandomUsers(10);
+
+const io = socketio.listen(server);
+
+io.on('connection', (socket) => {
+  console.log('user connected');
+  socket.on('disconnect', () => {
+    console.log('user disconnected');
+  });
+  socket.on('getLiveData', (uids) => {
+    console.log(`data requested for: ${uids}`);
+    return db.getLiveDataMultiple(uids)
+      .then(data => data.map(el => el.live.pop()))
+      .then(data => io.emit('data', data));
+  });
+});
+
+// generateRandomUsers(10);

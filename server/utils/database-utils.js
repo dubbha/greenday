@@ -8,11 +8,15 @@ const Feed = mongoose.model('Feed');
 export default {
     setUpConnection,
     getFeed,
+    getFeedUids,
     getFeedByUid,
     pushDailyAvg,
     pushLive,
     postNewFeed,
-    dropFeedCollection
+    dropFeedCollection,
+    getLiveData,
+    getLiveDataMultiple,
+    postNewFeed
 };
 
 function setUpConnection() {
@@ -21,6 +25,11 @@ function setUpConnection() {
 
 function getFeed() {
     return Feed.find();
+}
+
+function getFeedUids() {
+    return Feed.find({})
+        .select({ uid: 1, _id: 0 })
 }
 
 function getFeedByUid(uid) {
@@ -38,7 +47,7 @@ function postNewFeed(data) {
 
 function dropFeedCollection() {
     mongoose.connection.collections.feeds.drop((err) => {
-        console.log('Collection was fucking dropped!');
+        console.log('Collection was dropped!');
     });
 }
 
@@ -54,4 +63,29 @@ function pushLive(data) {
         { uid: data.uid },
         { $push: {live: data.live}}
     );
+}
+
+function postNewFeed(data) {
+    const feed = new Feed({
+        uid: data.uid,
+        dailyAvg: data.dailyAvg,
+        live: data.live
+    });
+    return feed.save();
+}
+
+function getLiveData(uid) {
+    return Feed.find({
+        'uid': uid
+    })
+    .sort({ date: -1 })
+    .limit(1);
+}
+
+function getLiveDataMultiple(uids) {
+    return Feed.find({
+        'uid': { $in: uids }
+    })
+    .select({ "_id": 0 })
+    .sort({ date: 1 });
 }
