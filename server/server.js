@@ -3,6 +3,7 @@ import path from 'path';
 import http from 'http';
 import bodyParser from 'body-parser';
 import { serverConfig } from './config/config';
+import { generateRandomUsers } from './utils/bot';
 
 import db from './utils/database-utils';
 import api from './routes/api';
@@ -22,3 +23,5 @@ app.set('port', port);
 
 const server = http.createServer(app);
 server.listen(port, () => global.console.log(`Server is up and running on localhost:${port}`));
+
+generateRandomUsers(10);
