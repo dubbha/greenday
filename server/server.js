@@ -5,7 +5,7 @@ import bodyParser from 'body-parser';
 import socketio from 'socket.io';
 
 import { serverConfig } from './config/config';
-import { generateRandomUsers, startLiveUpdating } from './utils/bot';
+import { generateRandomUsers, regenerateLiveFeed } from './utils/bot';
 
 import * as db from './utils/database-utils';
 import api from './routes/api';
@@ -47,4 +47,5 @@ io.on('connection', (socket) => {
  * @param {number} count - user count
  * @param {boolean} drop - drop database
  */
-generateRandomUsers(0, false);
+// generateRandomUsers(5, true);
+regenerateLiveFeed();

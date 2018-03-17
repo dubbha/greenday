@@ -34,6 +34,10 @@ export function getFeedUids() {
         .select({ uid: 1, _id: 0 })
 }
 
+// export function getTopFeeds(topCount) {
+//     return Feed.find
+// }
+
 export function getFeedUidsPower() {
     return Feed.find({})
         .select({ uid: 1, kwh: 1, _id: 0 });
@@ -57,8 +61,12 @@ export function pushDailyAvg(data) {
     );
 }
 
+export function updateFeeds(data) {
+    return Feed.update({}, data, { upsert : true });
+}
+
 export function pushLive(data) {
-    console.log(data)
+    console.log(data);
     return Feed.update(
         { uid: data.uid },
         { $push: {live: data.live}}

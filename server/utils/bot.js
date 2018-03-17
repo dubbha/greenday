@@ -67,17 +67,31 @@ function getFakeTime() {
     return new Date(2018, 9, 20, ...realTime);
 }
 
-export function startLiveUpdating() {
-    db.getFeedUidsPower()
+export function regenerateLiveFeed() {
+    db.getFeed()
         .then((feeds) => {
             feeds.forEach((feed) => {
-                startPush({
+                db.updateFeeds({
                     uid: feed.uid,
+                    dailyAvg: feed.dailyAvg,
+                    live: generateLiveFeed(feed.kwh, feed.uid),
                     kwh: feed.kwh
                 });
-            });
-        });
+            })
+        })
 }
+
+// export function startLiveUpdating() {
+//     db.getFeedUidsPower()
+//         .then((feeds) => {
+//             feeds.forEach((feed) => {
+//                 startPush({
+//                     uid: feed.uid,
+//                     kwh: feed.kwh
+//                 });
+//             });
+//         });
+// }
 
 function startPush({uid, kwh}) {
     setInterval(() => {
