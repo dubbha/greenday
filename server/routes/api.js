@@ -1,5 +1,5 @@
 import express from 'express';
-import db from '../utils/database-utils';
+import * as db from '../utils/database-utils';
 
 const router = express.Router();
 
@@ -20,7 +20,6 @@ router.get('/feed/:uid', (req, res) => {
         .then((feed) => res.send(feed))
         .catch((err) => res.send(`Smth went wrong: ${err}`));
 });
-
 
 router.post('/feed', (req, res) => {
     db.postNewFeed(req.body)

@@ -5,87 +5,89 @@ import { dbConfig } from '../config/config';
 mongoose.Promise = global.Promise;
 const Feed = mongoose.model('Feed');
 
-export default {
-    setUpConnection,
-    getFeed,
-    getFeedUids,
-    getFeedByUid,
-    pushDailyAvg,
-    pushLive,
-    postNewFeed,
-    dropFeedCollection,
-    getLiveData,
-    getLiveDataMultiple,
-    postNewFeed
-};
+/**
+ * setUpConnection
+ * dropFeedCollection
+ * 
+ * getFeed     - whole feed collection
+ * getFeedUids - all existing uids
+ * getFeedUidsPower - uids and powers (uid & kwh)
+ * getFeedByUid - find feed with passed uid
+ * pushDailyAvg - find feed by uid and push value in dailyAvg
+ * pushLive     - find feed by uid and push value in live
+ * postNewFeed  - create new feed instanse
+ * getLiveData  - get last live value
+ * getLiveDataMultiple - get last live values of multiple feed instances
+ * 
+ */
 
-function setUpConnection() {
+export function setUpConnection() {
     mongoose.connect(`mongodb://${dbConfig.host}:${dbConfig.port}/${dbConfig.name}`);
 }
 
-function getFeed() {
+export function getFeed() {
     return Feed.find();
 }
 
-function getFeedUids() {
+export function getFeedUids() {
     return Feed.find({})
         .select({ uid: 1, _id: 0 })
 }
 
-function getFeedByUid(uid) {
-    return Feed.find({uid});
+export function getFeedUidsPower() {
+    return Feed.find({})
+        .select({ uid: 1, kwh: 1, _id: 0 });
 }
 
-function postNewFeed(data) {
-    const feed = new Feed({
-        uid: data.uid,
-        dailyAvg: data.dailyAvg,
-        live: data.live
-    });
-    return feed.save();
+export function getFeedByUid(uid) {
+    return Feed.find({uid})
+        .select({ _id: 0 });
 }
 
-function dropFeedCollection() {
+export function dropFeedCollection() {
     mongoose.connection.collections.feeds.drop((err) => {
         console.log('Collection was dropped!');
     });
 }
 
-function pushDailyAvg(data) {
+export function pushDailyAvg(data) {
     return Feed.update(
         { uid: data.uid },
         { $push: {dailyAvg: data.dailyAvg}}
     );
 }
 
-function pushLive(data) {
+export function pushLive(data) {
+    console.log(data)
     return Feed.update(
         { uid: data.uid },
         { $push: {live: data.live}}
     );
 }
 
-function postNewFeed(data) {
+export function postNewFeed(data) {
     const feed = new Feed({
         uid: data.uid,
         dailyAvg: data.dailyAvg,
-        live: data.live
+        live: data.live,
+        kwh: data.kwh
     });
     return feed.save();
 }
 
-function getLiveData(uid) {
+export function getLiveData(uid) {
     return Feed.find({
         'uid': uid
     })
+    .select({ _id: 0 })
     .sort({ date: -1 })
     .limit(1);
 }
 
-function getLiveDataMultiple(uids) {
+export function getLiveDataMultiple(uids) {
     return Feed.find({
         'uid': { $in: uids }
     })
-    .select({ "_id": 0 })
+    .select({ _id: 0 })
     .sort({ date: 1 });
 }

@@ -5,9 +5,9 @@ import bodyParser from 'body-parser';
 import socketio from 'socket.io';
 
 import { serverConfig } from './config/config';
-import { generateRandomUsers } from './utils/bot';
+import { generateRandomUsers, startLiveUpdating } from './utils/bot';
 
-import db from './utils/database-utils';
+import * as db from './utils/database-utils';
 import api from './routes/api';
 
 const app = express();
@@ -42,4 +42,9 @@ io.on('connection', (socket) => {
   });
 });
 
-// generateRandomUsers(10);
+/**
+ * generateRandomUsers (count, drop)
+ * @param {number} count - user count
+ * @param {boolean} drop - drop database
+ */
+generateRandomUsers(0, false);
