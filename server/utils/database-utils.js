@@ -87,7 +87,7 @@ export function pushLive(data) {
         { uid: data.uid },
         { $push: {live: data.live}},
         (err, res) => {
-            console.log(err, res)
+            console.log(err, res);
         }
     );
 }
@@ -115,6 +115,6 @@ export function getLiveDataMultiple(uids) {
     return Feed.find({
         'uid': { $in: uids }
     })
-    .select({ _id: 0 })
-    .sort({ date: 1 });
+    // .select({ _id: 0 })
+    // .sort({ "live.date": -1});
 }

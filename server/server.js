@@ -12,6 +12,12 @@ import api from './routes/api';
 
 const app = express();
 
+app.use((req, res, next) => { // https://enable-cors.org/server_expressjs.html
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
+  next();
+});
+
 db.setUpConnection();
 
 app.use(bodyParser.json());
@@ -35,10 +41,19 @@ io.on('connection', (socket) => {
     console.log('user disconnected');
   });
   socket.on('getLiveData', (uids) => {
-    console.log(`data requested for: ${uids}`);
+    // console.log(`data requested for: ${uids}`);
     return db.getLiveDataMultiple(uids)
-      .then(data => data.map(el => el.live.pop()))
-      .then(data => io.emit('data', data));
+      .then(data => data.reduce((agg, cur) => {
+        return ({
+          ...agg,
+          [cur.uid]: cur.live
+            .sort((a, b) => a.date - b.date)
+            .pop()
+        })
+      }, {}))
+      .then(data => {
+        io.emit('data', data)
+      });
   });
 });
 
@@ -48,5 +63,5 @@ io.on('connection', (socket) => {
  * @param {boolean} drop - drop database
  */
 // generateRandomUsers(20, true);
-// regenerateLiveFeed();
-
+regenerateLiveFeed();
+ 

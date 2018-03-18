@@ -30,6 +30,8 @@ class App extends Component {
   updateLiveData () {
     const { data1, data2 } = this.state;
 
+    console.log(data1);
+
     this.setState({
       data1: addDataPoint(data1),
       data2: addDataPoint(data2)
