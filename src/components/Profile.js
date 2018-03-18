@@ -18,7 +18,7 @@ class Profile extends Component {
                 <Header />
                 <Live />
                 <Avg />
-                <div style={{"padding-top": "60px"}} className="Highcharts-wrapper">
+                <div style={{"paddingTop": "60px"}} className="Highcharts-wrapper">
                     <SimpleLineChart />
                 </div>
             </div>

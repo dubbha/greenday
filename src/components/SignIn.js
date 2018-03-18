@@ -42,16 +42,16 @@ class SignIn extends Component {
                     <div className="sublogo">solarmarathon</div>
                 </div>
                 <div className="signin-form">
-                    <div class="signin-links">
-                        <span class="signin-activelink">Sign in</span>
-                        <span class="signin-link">New user registration</span>
+                    <div className="signin-links">
+                        <span className="signin-activelink">Sign in</span>
+                        <span className="signin-link">New user registration</span>
                     </div>
                     <form onSubmit={this.handleSubmit}>
                         <input className="signin-input" type="text" placeholder="Email" ref={(node) => {this.email = node;}} />
                         <br />
                         <input className="signin-input" type="password" placeholder="Password" ref={(node) => {this.password = node;}} />
                         <br />
-                        <div className="signin-right signin-forgot"><span class="signin-link">Forgot password?</span></div>
+                        <div className="signin-right signin-forgot"><span className="signin-link">Forgot password?</span></div>
                         <br />
                         <div className="signin-right"><button className="signin-button" onClick={this.handleSubmit}>Sign In</button></div>
                     </form>
