@@ -4,8 +4,8 @@ const Schema = mongoose.Schema;
 
 const FeedSchema = new Schema({
     uid: {type: String, required: true},
-    dailyAvg: [{ date: Date, value: Number}],
-    live: [{ date: Date, value: Number}],
+    dailyAvg: [{ date: Number, value: Number}],
+    live: [{ date: Number, value: Number}],
     kwh: {type: Number}
 });
 

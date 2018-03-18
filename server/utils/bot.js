@@ -35,7 +35,7 @@ function generateAvgFeed(kwh) {
         const rand = Math.random().toFixed(3) * (RAND_MAX - RAND_MIN) + RAND_MIN;
         const value = kwh * dailyRates[date.getMonth()] * rand;
         dailyAvg.push({
-            date: new Date(date.getTime()),
+            date: new Date(date.getTime()).getTime(),
             value
         });
     }
@@ -46,12 +46,12 @@ function generateAvgFeed(kwh) {
 function generateLiveFeed(kwh, uid) {
     const fakeTime = getFakeTime();
     const live = [];
-    
-    for (let time = new Date(2018, 9, 20, 7); time.getTime() < fakeTime.getTime(); time.setSeconds(time.getSeconds() + 10)) {
+
+    for (let time = new Date(2018, 9, 20); time.getTime() < fakeTime.getTime(); time.setSeconds(time.getSeconds() + 10)) {
         const rand = Math.random().toFixed(3) * (RAND_MAX - RAND_MIN) + RAND_MIN;
         const value = kwh * dailyRates[fakeTime.getMonth()] * (hourlyRates[time.getHours()] || 0) * rand;
         live.push({
-            date: new Date(time.getTime()),
+            date: new Date(time.getTime()).getTime(),
             value: value
         });
     }
@@ -81,17 +81,6 @@ export function regenerateLiveFeed() {
         })
 }
 
-// export function startLiveUpdating() {
-//     db.getFeedUidsPower()
-//         .then((feeds) => {
-//             feeds.forEach((feed) => {
-//                 startPush({
-//                     uid: feed.uid,
-//                     kwh: feed.kwh
-//                 });
-//             });
-//         });
-// }
 
 function startPush({uid, kwh}) {
     setInterval(() => {
@@ -100,7 +89,7 @@ function startPush({uid, kwh}) {
         const value = kwh * dailyRates[date.getMonth()] * hourlyRates[date.getHours()] * rand;
         db.pushLive({
             uid,
-            live: {date, value}
+            live: {date: date.getTime(), value}
         });
     }, 10000);
 }

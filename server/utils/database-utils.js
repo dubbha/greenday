@@ -14,6 +14,7 @@ const Feed = mongoose.model('Feed');
  * getFeedUidsPower - uids and powers (uid & kwh)
  * getFeedByUid - find feed with passed uid
  * pushDailyAvg - find feed by uid and push value in dailyAvg
+ * getFeedAverages - get all entities and its dailyAvg
  * pushLive     - find feed by uid and push value in live
  * postNewFeed  - create new feed instanse
  * getLiveData  - get last live value
@@ -34,9 +35,25 @@ export function getFeedUids() {
         .select({ uid: 1, _id: 0 })
 }
 
-// export function getTopFeeds(topCount) {
-//     return Feed.find
-// }
+export function getTopAvgFeeds(count) {
+    return getFeedAverages()
+        .then((feeds) => {
+            const totals = [];
+            feeds.forEach((feed) => {
+                const uid = feed.uid;
+                const totalAvg = feed.dailyAvg.reduce((sum, cur) => sum + cur.value, 0) / feeds.length;
+                totals.push({uid, totalAvg});
+            });
+            return totals
+                .sort((a, b) => a.totalAvg - b.totalAvg)
+                .slice(feeds.length - count);
+        });
+}
+
+export function getFeedAverages() {
+    return Feed.find({})
+        .select({ uid: 1, _id: 0, dailyAvg: 1, kwh: 1});
+}
 
 export function getFeedUidsPower() {
     return Feed.find({})
@@ -66,10 +83,12 @@ export function updateFeeds(data) {
 }
 
 export function pushLive(data) {
-    console.log(data);
     return Feed.update(
         { uid: data.uid },
-        { $push: {live: data.live}}
+        { $push: {live: data.live}},
+        (err, res) => {
+            console.log(err, res)
+        }
     );
 }
 

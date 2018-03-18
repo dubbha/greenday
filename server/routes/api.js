@@ -15,6 +15,15 @@ router.get('/feed/uids', (req, res) => {
     db.getFeedUids().then(data => res.send(data));
 });
 
+router.get('/feed/averages', (req, res) => {
+    db.getFeedAverages().then(data => res.send(data));
+});
+
+router.get('/feed/top-averages/:count', (req, res) => {
+    db.getTopAvgFeeds(req.params.count)
+        .then(data => res.send(data));
+})
+
 router.get('/feed/:uid', (req, res) => {
     db.getFeedByUid(req.params.uid)
         .then((feed) => res.send(feed))
