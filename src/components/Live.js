@@ -69,7 +69,7 @@ class App extends Component {
 
         this.setState({
           dataPoints,
-          liveUpdate: window.setInterval(this.requestLiveData, 7500)
+          liveUpdate: window.setInterval(this.requestLiveData, 10000)
         });
       })
   }
