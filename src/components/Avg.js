@@ -6,10 +6,13 @@ import {
 import axios from 'axios';
 
 const plotOptions = {
-  // series: {
-  //   pointStart: 2010
-  // }
 };
+
+const chartOptions = {
+  width: '450px',
+}
+
+const names = ['Sunny', 'Ben', 'Jim', 'Natalie', 'Dave', 'Benny', 'Margaret', 'Bob', 'Solomon', 'Robert', 'Foxy', 'Digger', 'Zed'];
 
 class App extends Component {
   constructor(props) {
@@ -20,7 +23,8 @@ class App extends Component {
   }
 
   componentDidMount() {
-      axios.get('http://10.17.166.219:3001/api/feed/averages/')
+      // axios.get('http://10.17.166.219:3001/api/feed/averages/')
+      axios.get('http://127.0.0.1:3001/api/feed/averages/')
         .then(data => {
           console.log(data);
           this.setState({ data: data.data });
@@ -39,11 +43,11 @@ class App extends Component {
 
       <div className="app">
         <HighchartsChart plotOptions={plotOptions}>
-          <Chart />
+          <Chart chartOptions={chartOptions} />
 
-          <Title>Solar Employment Growth by Sector, 2010-2016</Title>
+          <Title>Avarage Daily Generation (kWh)</Title>
 
-          <Subtitle>Source: thesolarfoundation.com</Subtitle>
+          {/* <Subtitle>Source: thesolarfoundation.com</Subtitle> */}
 
           <Legend layout="vertical" align="right" verticalAlign="middle" />
 
@@ -52,11 +56,12 @@ class App extends Component {
           </XAxis>
 
           <YAxis id="number">
-            <YAxis.Title>Number of employees</YAxis.Title>
-            {
-              displayData.map(feed => (
-                <LineSeries id={feed.uid} name={feed.uid} key={feed.uid} data={feed.points} />
-              ))
+            <YAxis.Title>Avarage Daily Generation (kWh)</YAxis.Title>
+            { displayData.map((feed, idx) => {
+                return (
+                  <LineSeries id={feed.uid} name={names[idx]} key={feed.uid} data={feed.points} />
+                );
+              })
             }
           </YAxis>
         </HighchartsChart>

@@ -1,0 +1,92 @@
+.signin-wrapper {
+    width: 100%;
+    height: 100vh;
+    background: url('../assets/img/bg.png') no-repeat center top;
+    background-color: #86ddee;
+}
+
+.signin-form {
+    position: relative;
+    top: 30px;
+    width: 229px;
+    height: 154px;
+    background-color: white;
+    font-family: 'Lato';
+    font-size: 11px;
+    padding: 16px;
+    display: inline-block;
+    box-sizing: border-box;
+}
+
+.signin-button {
+    width: 49px;
+    height: 24px;
+    background-color: #4a90e2;
+    border: none;
+    font-family: 'Lato';
+    font-size: 11px;
+    color: white;
+}
+
+.signin-input {
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid #468ee5;
+    background-color: white;
+    margin-top: 12px;
+    width: 100%;
+    outline: none;
+    font-family: 'Lato';
+    font-size: 11px;
+    -webkit-box-shadow: inset 0 0 0 50px #fff;
+    -webkit-text-fill-color: #000;
+}
+
+.signin-link {
+    font-family: 'Lato';
+    font-size: 11px;
+    color: rgba(0, 0, 0, 0.3);
+}
+
+.signin-activelink {
+    font-family: 'Lato';
+    font-size: 11px;
+    color: #4a90e2;
+    margin-right: 18px;
+}
+
+.signin-links {
+    text-align: left
+}
+
+.signin-right {
+    text-align: right;
+}
+
+.signin-forgot {
+    margin-top: 10px
+}
+
+.logo {
+    position: relative;
+    top: 16px;
+    width: 432px;
+    height: 154px;
+    border: 1px solid white;
+    margin-right: 10px;
+    display: inline-block;
+    box-sizing: border-box;
+    font-family: "Lato";
+    font-weight: 300;
+    font-size: 65px;
+    color: white;
+    padding-top: 10px;
+}
+
+.sublogo {
+    font-family: "Lato";
+    font-size: 35px;
+    letter-spacing: 12px;
+    margin-left: 8px;
+}

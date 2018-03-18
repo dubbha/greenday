@@ -17,11 +17,12 @@ class App extends Component {
     return (
       <div className="App">
         
-        {/* <Header />
-
+        <Header />
+        {/* <button onClick={() => this.requestLiveData(123)}>LiveData</button> */}
+        {/* <LiveMine /> */}
         <Live />
         <Avg />
-        <SimpleLineChart /> */}
+        <SimpleLineChart />
 
         {/* <SplineWithPlotBands /> */}
         {/* <LiveUpdate /> */}

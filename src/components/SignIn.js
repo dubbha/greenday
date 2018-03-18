@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import firebase from 'firebase';
+import './SignIn.css';
 
 class SignIn extends Component {
     state = {
@@ -35,16 +36,26 @@ class SignIn extends Component {
 
     render() {
         return (
-            <div>
-                <form onSubmit={this.handleSubmit}>
-                    <input type="text" placeholder="Email" ref={(node) => {this.email = node;}} />
-                    <br />
-                    <input type="password" placeholder="Password" ref={(node) => {this.password = node;}} />
-                    <br />
-                    <span>Forget password?</span>
-                    <br />
-                    <button onClick={this.handleSubmit}>Sign In</button>
-                </form>
+            <div className="signin-wrapper">
+                <div className="logo">
+                    GREEN CITY
+                    <div className="sublogo">solarmarathon</div>
+                </div>
+                <div className="signin-form">
+                    <div class="signin-links">
+                        <span class="signin-activelink">Sign in</span>
+                        <span class="signin-link">New user registration</span>
+                    </div>
+                    <form onSubmit={this.handleSubmit}>
+                        <input className="signin-input" type="text" placeholder="Email" ref={(node) => {this.email = node;}} />
+                        <br />
+                        <input className="signin-input" type="password" placeholder="Password" ref={(node) => {this.password = node;}} />
+                        <br />
+                        <div className="signin-right signin-forgot"><span class="signin-link">Forgot password?</span></div>
+                        <br />
+                        <div className="signin-right"><button className="signin-button" onClick={this.handleSubmit}>Sign In</button></div>
+                    </form>
+                </div>
             </div>
         );
     }

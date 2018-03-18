@@ -7,7 +7,10 @@ import io from 'socket.io-client';
 import { addDataPoint } from './utils/data-helpers';
 import axios from 'axios';
 
-const socket = io.connect('http://10.17.166.219:3001/');
+// const socket = io.connect('http://10.17.166.219:3001/');
+const socket = io.connect('http://127.0.0.1:3001/');
+
+const names = ['Sunny', 'Ben', 'Jim', 'Natalie', 'Dave', 'Benny', 'Margaret', 'Bob', 'Solomon', 'Robert', 'Foxy', 'Digger', 'Zed'];
 
 class App extends Component {
 
@@ -19,10 +22,7 @@ class App extends Component {
 
     this.uids = [];  // get from props?
 
-    // this.uids.forEach(uid => dataPoints[uid] = []);
-
     this.state = {
-      //this.uids,   // get from props?
       dataPoints: {},
       data1: [],
       data2: [],
@@ -31,7 +31,8 @@ class App extends Component {
   }
 
   componentDidMount () {
-    axios.get('http://10.17.166.219:3001/api/feed/uids/')
+    // axios.get('http://10.17.166.219:3001/api/feed/uids/')
+    axios.get('http://127.0.0.1:3001/api/feed/uids/')
       .then(data => {
         console.log('data', data);
         const uids = data.data.map(i => i.uid);
@@ -115,10 +116,10 @@ class App extends Component {
         <HighchartsChart>
           <Chart />
 
-          <Title>Dynamically updating data</Title>
+          <Title>Current Gerenation (kWh)</Title>
 
-          <Legend>
-            <Legend.Title>Legend</Legend.Title>
+          <Legend layout="vertical" align="right" verticalAlign="middle">
+            {/* <Legend.Title>Members</Legend.Title> */}
           </Legend>
 
           <XAxis type="datetime">
@@ -126,23 +127,13 @@ class App extends Component {
           </XAxis>
 
           <YAxis id="pressure">
-            <YAxis.Title>Gerenation (kWh)</YAxis.Title>
-            { Object.keys(dataPoints).map(uid => (
-              <LineSeries id={uid} name={uid} data={dataPoints[uid]} key={uid} />  
-            )) }
-            {/* <LineSeries id="p1" name="Sensor 1" data={data1} /> */}
-            {/* <LineSeries id="p2" name="Sensor 2" data={data2} /> */}
+            <YAxis.Title>Current Gerenation (kWh)</YAxis.Title>
+            { Object.keys(dataPoints).map((uid, idx) =>
+                <LineSeries id={uid} name={names[idx]} data={dataPoints[uid]} key={uid} />
+            ) }
+
           </YAxis>
         </HighchartsChart>
-
-        <div>
-          {!liveUpdate && (
-            <button className="btn btn-success" onClick={this.handleStartLiveUpdate}>Live update</button>
-          )}
-          {liveUpdate && (
-            <button className="btn btn-danger" onClick={this.handleStopLiveUpdate}>Stop update</button>
-          )}
-        </div>
       </div>
     );
   }

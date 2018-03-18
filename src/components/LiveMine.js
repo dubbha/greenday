@@ -7,7 +7,7 @@ import io from 'socket.io-client';
 import { addDataPoint } from './utils/data-helpers';
 import axios from 'axios';
 
-const socket = io.connect('http://10.17.166.219:3001/');
+const socket = io.connect('http://127.0.0.1:3001/');
 
 class App extends Component {
 
@@ -31,8 +31,8 @@ class App extends Component {
   }
 
   componentDidMount () {
-    //axios.get('http://127.0.0.1:3001/api/feed/uids/')
-    axios.get('http://10.17.166.219:3001/api/feed/uids/')
+    axios.get('http://127.0.0.1:3001/api/feed/uids/')
+    // axios.get('http://10.17.166.219:3001/api/feed/uids/')
       .then(data => {
         console.log('data', data);
         // const uids = data.data.map(i => i.uid);
