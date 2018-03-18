@@ -31,10 +31,12 @@ class App extends Component {
   }
 
   componentDidMount () {
+    //axios.get('http://127.0.0.1:3001/api/feed/uids/')
     axios.get('http://10.17.166.219:3001/api/feed/uids/')
       .then(data => {
         console.log('data', data);
-        const uids = data.data.map(i => i.uid);
+        // const uids = data.data.map(i => i.uid);
+        const uids = [data.data[0].uid];
         console.log('uids', uids);
 
         const dataPoints = {};

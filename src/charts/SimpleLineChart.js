@@ -6,7 +6,7 @@ import {
 
 const plotOptions = {
   series: {
-    pointStart: 2010
+    pointStart: 2011
   }
 };
 
@@ -15,7 +15,7 @@ const App = () => (
     <HighchartsChart plotOptions={plotOptions}>
       <Chart />
 
-      <Title>Solar Employment Growth by Sector, 2010-2016</Title>
+      <Title>Solar Employment Growth by Sector, 2011-2017</Title>
 
       <Subtitle>Source: thesolarfoundation.com</Subtitle>
 

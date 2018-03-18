@@ -7,6 +7,8 @@ import SplineWithPlotBands from './charts/SplineWithPlotBands';
 import LiveUpdate from './charts/LiveUpdate';
 import Root from './components/Root';
 import Live from './components/Live';
+import LiveMine from './components/LiveMine';
+import Avg from './components/Avg';
 import './config';
 
 class App extends Component {
@@ -19,14 +21,15 @@ class App extends Component {
 
         {/* <button onClick={() => this.requestLiveData(123)}>LiveData</button> */}
         <Live />
+        {/* <LiveMine /> */}
+        <Avg />
+        <SimpleLineChart />
+        {/* <SplineWithPlotBands /> */}
+        {/* <LiveUpdate /> */}
 
         <BrowserRouter>
           <Route path="/" component={Root} />
         </BrowserRouter>
-
-        <SimpleLineChart />
-        <SplineWithPlotBands />
-        {/* <LiveUpdate /> */}
 
       </div>
     );
