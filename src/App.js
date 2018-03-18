@@ -17,20 +17,9 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        
-        {/* <Header />
-
-        <Live />
-        <Avg />
-        <SimpleLineChart /> */}
-
-        {/* <SplineWithPlotBands /> */}
-        {/* <LiveUpdate /> */}
-
         <BrowserRouter>
           <Route path="/" component={Root} />
         </BrowserRouter>
-
       </div>
     );
   }

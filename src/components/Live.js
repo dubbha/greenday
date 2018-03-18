@@ -114,7 +114,7 @@ class App extends Component {
     return (
       <div className="Highcharts-wrapper">
         <HighchartsChart>
-          <Chart />
+          <Chart style="position: relative; left: 200px; right: 200px; padding: 30px; box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.25);"/>
 
           <Title>Current Gerenation (kWh)</Title>
 

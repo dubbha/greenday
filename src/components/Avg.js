@@ -5,13 +5,6 @@ import {
 } from 'react-jsx-highcharts';
 import axios from 'axios';
 
-const plotOptions = {
-};
-
-const chartOptions = {
-  width: '450px',
-}
-
 const names = ['Sunny', 'Ben', 'Jim', 'Natalie', 'Dave', 'Benny', 'Margaret', 'Bob', 'Solomon', 'Robert', 'Foxy', 'Digger', 'Zed'];
 
 class App extends Component {
@@ -41,9 +34,9 @@ class App extends Component {
 
     return (
 
-      <div className="app">
-        <HighchartsChart plotOptions={plotOptions}>
-          <Chart chartOptions={chartOptions} />
+      <div className="Highcharts-wrapper">
+        <HighchartsChart>
+          <Chart style="position: relative; left: 200px; right: 200px; padding: 30px; box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.25);"/>
 
           <Title>Avarage Daily Generation (kWh)</Title>
 
