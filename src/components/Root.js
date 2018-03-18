@@ -18,7 +18,7 @@ class Root extends Component {
     render() {
         return (
             <Switch>
-                <Route path="/" component={SignIn} />
+                <Route path="/" exact component={SignIn} />
                 <ProtectedRoute path="/profile" component={Profile} />
             </Switch>
         );

@@ -10,6 +10,7 @@ import Live from './components/Live';
 import Header from './components/Header';
 import LiveMine from './components/LiveMine';
 import Avg from './components/Avg';
+import Profile from './components/Profile';
 import './config';
 
 class App extends Component {
