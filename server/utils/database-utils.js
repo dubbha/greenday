@@ -86,9 +86,7 @@ export function pushLive(data) {
     return Feed.update(
         { uid: data.uid },
         { $push: {live: data.live}},
-        (err, res) => {
-            console.log(err, res);
-        }
+        (err, res) => {}
     );
 }
 
