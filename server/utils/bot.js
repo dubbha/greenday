@@ -106,5 +106,5 @@ function startPush({uid, kwh}) {
             uid,
             live: {date: date.getTime(), value}
         });
-    }, 8000);
+    }, 5000);
 }

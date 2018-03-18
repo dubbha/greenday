@@ -80,3 +80,11 @@
 .navbar-nav {
   padding-bottom: 18px;
 }
+
+.fake-section {
+  margin: 0 auto;
+  width: 1286px;
+  height: 800px;
+  background: url('./assets/img/fake.png') no-repeat;
+  background-size: contain;
+}

@@ -21,6 +21,10 @@ class Profile extends Component {
                 <div style={{"paddingTop": "60px"}} className="Highcharts-wrapper">
                     <SimpleLineChart />
                 </div>
+
+                <div className="Highcharts-wrapper fake-section">
+
+                </div>
             </div>
             // <div>
             //     <h1>Profile</h1>
