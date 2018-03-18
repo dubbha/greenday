@@ -44,7 +44,7 @@ class App extends Component {
         return dataPoints;
 
       })
-      .then(dataPoints => {
+      .then((dataPoints) => {
         socket.on('data', (data) => {
           console.log('data', data);
           // const { dataPoints } = this.state;
@@ -59,14 +59,15 @@ class App extends Component {
     
           console.log('dataPoints', dataPoints);
           
-          // this.setState({
-          //   dataPoints,
-          //   data1: addDataPoint(data1, data[Object.keys(data)[0]]),
-          //   data2: addDataPoint(data2, data[Object.keys(data)[1]])
-          // });
+          this.setState({
+            dataPoints,
+            data1: addDataPoint(data1, data[Object.keys(data)[0]]),
+            data2: addDataPoint(data2, data[Object.keys(data)[1]])
+          });
         });
 
         this.setState({
+          dataPoints,
           liveUpdate: window.setInterval(this.requestLiveData, 10000)
         });
       })
@@ -129,7 +130,7 @@ class App extends Component {
             { Object.keys(dataPoints).map(uid => (
               <LineSeries id={uid} name={uid} data={dataPoints[uid]} key={uid} />  
             )) }
-            <LineSeries id="p1" name="Sensor 1" data={data1} />
+            {/* <LineSeries id="p1" name="Sensor 1" data={data1} /> */}
             {/* <LineSeries id="p2" name="Sensor 2" data={data2} /> */}
           </YAxis>
         </HighchartsChart>

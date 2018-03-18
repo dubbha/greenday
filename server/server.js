@@ -62,6 +62,6 @@ io.on('connection', (socket) => {
  * @param {number} count - user count
  * @param {boolean} drop - drop database
  */
-// generateRandomUsers(20, true);
-regenerateLiveFeed();
+generateRandomUsers(10, true);
+// regenerateLiveFeed();
  
