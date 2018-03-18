@@ -8,18 +8,58 @@
 }
 
 .App-header {
-  background-color: #222;
-  height: 80px;
+  background-color: white;
+  height: 20px;
   padding: 20px;
-  color: white;
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.25);
+  margin-bottom: 1px;
 }
 
+.App-header-backdrop {
+  height: 320px;
+  background: url('./assets/img/backdrop.jpg') 50% 22% no-repeat;
+  background-size: cover;
+}
+
+.App-header-profile-avatar {
+  position: absolute;
+  height: 208px;
+  width: 208px;
+  border-radius: 104px;
+  padding: 4px;
+  background-color: white;
+  z-index: 1;
+  bottom: -42px;
+  left: 65px;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.25);
+} 
+
+.App-header-profile-photo {
+  margin: 3px 0px 0px 3px;
+  height: 200px;
+  width: 200px;
+  background: url('./assets/img/avatar.png') no-repeat;
+}
+
+.App-header-bottom {
+  position: relative;
+  height: 46px;
+  padding: 10px 0;
+  background-color: #00aaa5;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.25);
+  margin-bottom: 15px;
+}
+ 
 .App-title {
   font-size: 1.5em;
 }
 
 .App-intro {
   font-size: large;
+}
+
+.Highcharts-wrapper {
+  background-color: #e6ecf0;
 }
 
 @keyframes App-logo-spin {

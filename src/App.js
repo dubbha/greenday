@@ -7,26 +7,28 @@ import SplineWithPlotBands from './charts/SplineWithPlotBands';
 import LiveUpdate from './charts/LiveUpdate';
 import Root from './components/Root';
 import Live from './components/Live';
+import Header from './components/Header';
+import LiveMine from './components/LiveMine';
+import Avg from './components/Avg';
 import './config';
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-        </header>
-
+        
+        <Header />
         {/* <button onClick={() => this.requestLiveData(123)}>LiveData</button> */}
         <Live />
+        {/* <LiveMine /> */}
+        <Avg />
+        <SimpleLineChart />
+        {/* <SplineWithPlotBands /> */}
+        {/* <LiveUpdate /> */}
 
         <BrowserRouter>
           <Route path="/" component={Root} />
         </BrowserRouter>
-
-        <SimpleLineChart />
-        <SplineWithPlotBands />
-        {/* <LiveUpdate /> */}
 
       </div>
     );

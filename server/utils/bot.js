@@ -13,6 +13,15 @@ export function generateRandomUsers(userCount, drop = false) {
         db.dropFeedCollection();
     }
 
+    const fireUid = 'ZsZoocWfU0NMs1CzifhlE1KU6aE3';
+    const kwh = 15;
+    db.postNewFeed({
+        uid: fireUid,
+        dailyAvg: generateAvgFeed(kwh),
+        live: generateLiveFeed(kwh, fireUid),
+        kwh
+    });
+
     for (let i = userCount; i > 0; i--) {
         const uid = '_' + Math.random().toString(36).substr(2, 9);
         const kwh = kwhs[i % 5];
