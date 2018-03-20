@@ -4,17 +4,27 @@ import {
     hourlyGenerationPercentage as hourlyRates
 } from '../mock-data/rates.json';
 
-const RAND_MIN = 0.95;
-const RAND_MAX = 1.05;
+const RAND_MIN = 0.89;
+const RAND_MAX = 1.11;
 
 export function generateRandomUsers(userCount, drop = false) {
+    const kwhs = [5, 10, 15, 20, 30];
     if (drop) {
         db.dropFeedCollection();
     }
 
+    const fireUid = 'ZsZoocWfU0NMs1CzifhlE1KU6aE3';
+    const kwh = 15;
+    db.postNewFeed({
+        uid: fireUid,
+        dailyAvg: generateAvgFeed(kwh),
+        live: generateLiveFeed(kwh, fireUid),
+        kwh
+    });
+
     for (let i = userCount; i > 0; i--) {
         const uid = '_' + Math.random().toString(36).substr(2, 9);
-        const kwh = 10;
+        const kwh = kwhs[i % 5];
 
         db.postNewFeed({
             uid,
@@ -33,7 +43,12 @@ function generateAvgFeed(kwh) {
     
     for (let date = fromDate; date.getTime() < toDate.getTime(); date.setDate(date.getDate() + 1)) {
         const rand = Math.random().toFixed(3) * (RAND_MAX - RAND_MIN) + RAND_MIN;
-        const value = kwh * dailyRates[date.getMonth()] * rand;
+
+        const rate = dailyRates[date.getMonth()] < dailyRates[date.getMonth() + 1]
+            ? dailyRates[date.getMonth()] + (dailyRates[date.getMonth() + 1] - dailyRates[date.getMonth()]) * (date.getDate() / 30)
+            : dailyRates[date.getMonth()] - (dailyRates[date.getMonth()] - dailyRates[date.getMonth() + 1]) * (date.getDate() / 30)
+
+        const value = kwh * rate * rand;
         dailyAvg.push({
             date: new Date(date.getTime()).getTime(),
             value
@@ -91,5 +106,5 @@ function startPush({uid, kwh}) {
             uid,
             live: {date: date.getTime(), value}
         });
-    }, 10000);
+    }, 8000);
 }

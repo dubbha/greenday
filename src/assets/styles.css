@@ -1,0 +1,104 @@
+/*///////////////////////////////*//*Global Styles*/
+body {
+    margin: 0px;
+    background-color: #E6ECF0;
+    padding: 0px;
+    font-family: 'lato', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.nav{
+    padding: 20px;
+    float: left;
+
+}
+header
+{background-color: white;
+}
+a, a:hover{
+    outline: none;
+    text-decoration: none;
+    text-transform: none;
+}
+a:hover{
+    cursor: pointer;
+    opacity: 0.5;
+}
+
+li a{
+    padding: 20px
+}
+
+.nav li{
+    float: left;
+    margin-left: 30px;
+}
+.active{
+    border-bottom: 2px solid #008000;
+}
+.pic1{
+    width: 100%;
+}
+.avaLittle{
+    width: 50px;
+}
+.descrtion{
+    padding: 20px 0;
+}
+.marathonBox{
+    background-color: #FFFEF1;
+    padding: 20px 0;
+}
+h1{
+    font-family: Lato;
+    font-size: 26px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    text-align: left;
+    color: #667580;
+    margin-top: 10px;
+}
+.infoBox{
+    width: 46%;
+    height: 100px;
+    background-color: #ffffff;
+    border: solid 1px rgba(0, 170, 165, 0.3);
+    padding: 20px;
+    margin-top: 10px;
+    float: left;
+    margin-left: 15px;
+
+}
+.text1{
+    font-size: 14px;
+    display: block;
+    font-weight: bold;
+    letter-spacing: 0.3px;
+    text-align: left;
+    color: #9b9b9b;
+}
+.text2{
+    font-size: 24px;
+    color: #4a90e2;
+}
+
+.thForChart{
+    background-color: #00aaa5;
+    width: 100%;
+    margin-top: 10px;
+}
+.thForChart span{
+    color: #ffffff;
+    padding: 5px 10px;
+    display: block;
+}
+.chart img{
+    width: 100%;
+}
+.avaRight{
+    float: right;
+    margin-top: 10px;
+}

@@ -17,9 +17,9 @@ export const createDataPoint = (time = Date.now(), magnitude = 1000, offset = 0)
   export const addDataPoint = (data, toAdd) => {
     console.log('addDataPoint', toAdd);
     if (!toAdd) toAdd = createDataPoint();
-    const newData = data.slice(0, 100); // limit size
+    const newData = data.slice(-40); // limit size
 
-    newData.push([toAdd.time, toAdd.value]);
+    newData.push([toAdd.date, toAdd.value]);
     return newData;
   };
   
